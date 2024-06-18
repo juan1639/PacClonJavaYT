@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import main.pacclon.settings.Settings;
 import main.pacclon.sprites.Pared;
+import main.pacclon.sprites.Puntitos;
 
 public class Instancias {
 	
@@ -14,6 +15,7 @@ public class Instancias {
 	
 	private Settings settings;
 	private ArrayList<Pared> pared = new ArrayList<>();
+	private ArrayList<Puntitos> puntitos = new ArrayList<>();
 	
 	public Instancias(Settings settings) {
 		
@@ -43,5 +45,35 @@ public class Instancias {
 		}
 		
 		return pared;
+	}
+	
+	public ArrayList<Puntitos> instanciarPuntitosLaberinto() {
+		
+		for (int i = 0; i < filas; i++) {
+			for (int ii = 0; ii < columnas; ii++) {
+
+				int tile = settings.laberinto.matriz[i][ii];
+				
+				if (tile == 1) {
+					puntitos.add(new Puntitos(ii, i, ancho, alto, false));
+					int acum = settings.laberinto.getContadorPuntitos();
+					settings.laberinto.setContadorPuntitos(acum + 1);
+
+				} else if (tile == 5) {
+					puntitos.add(new Puntitos(ii, i, ancho, alto, true));
+					int acum = settings.laberinto.getContadorPuntitosGordos();
+					settings.laberinto.setContadorPuntitosGordos(acum + 1);
+
+				} else {
+					// Ni Pared, ni Puntitos, (vacio)
+					//pared.add(new Pared(ii, i, ancho, alto));
+				}
+			}
+		}
+		
+		System.out.println("." + settings.laberinto.getContadorPuntitos());
+		System.out.println("*" + settings.laberinto.getContadorPuntitosGordos());
+		
+		return puntitos;
 	}
 }
