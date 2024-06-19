@@ -7,4 +7,5 @@ import main.pacclon.settings.Settings;
 public interface ISpritesDraw {
 	
 	void dibuja(Graphics g, int[][] matriz, Settings sett);
+
 }

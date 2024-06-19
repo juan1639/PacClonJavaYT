@@ -38,7 +38,7 @@ public class Instancias {
 				
 				// 9 = Pared, 1 = puntito...
 				
-				if (tile == 9) {
+				if (tile == settings.laberinto.PARED) {
 					pared.add(new Pared(ii, i, ancho, alto));
 				}
 			}
@@ -49,30 +49,25 @@ public class Instancias {
 	
 	public ArrayList<Puntitos> instanciarPuntitosLaberinto() {
 		
-		for (int i = 0; i < filas; i++) {
-			for (int ii = 0; ii < columnas; ii++) {
-
+		for (int i = 0; i < this.filas; i ++) {
+			
+			for (int ii = 0; ii < this.columnas; ii ++) {
+				
 				int tile = settings.laberinto.matriz[i][ii];
 				
-				if (tile == 1) {
+				// 1 = Puntito, 5 = puntito Gordo
+				if (tile == settings.laberinto.PUNTITO) {
 					puntitos.add(new Puntitos(ii, i, ancho, alto, false));
 					int acum = settings.laberinto.getContadorPuntitos();
 					settings.laberinto.setContadorPuntitos(acum + 1);
-
-				} else if (tile == 5) {
+					
+				} else if (tile == settings.laberinto.PUNTITO_GORDO) {
 					puntitos.add(new Puntitos(ii, i, ancho, alto, true));
 					int acum = settings.laberinto.getContadorPuntitosGordos();
 					settings.laberinto.setContadorPuntitosGordos(acum + 1);
-
-				} else {
-					// Ni Pared, ni Puntitos, (vacio)
-					//pared.add(new Pared(ii, i, ancho, alto));
 				}
 			}
 		}
-		
-		System.out.println("." + settings.laberinto.getContadorPuntitos());
-		System.out.println("*" + settings.laberinto.getContadorPuntitosGordos());
 		
 		return puntitos;
 	}

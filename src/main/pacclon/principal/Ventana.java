@@ -61,8 +61,8 @@ public class Ventana extends JPanel {
 			tile.dibuja(g);
 		}
 		
-		for (Puntitos punt: puntitos) {
-			punt.dibuja(g, matriz, settings);
+		for (Puntitos tile: puntitos) {
+			tile.dibuja(g, matriz, settings);
 		}
 	}
 }
