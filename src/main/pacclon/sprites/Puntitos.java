@@ -31,7 +31,6 @@ public class Puntitos implements ISpritesDraw {
 		this.y = y * this.tileY;
 		
 		this.gordos = gordos;
-		
 		this.size = this.gordos ? INI_SIZE_GORDOS : SIZE_NORMALES;
 	}
 	

@@ -57,11 +57,13 @@ public class Instancias {
 				
 				// 1 = Puntito, 5 = puntito Gordo
 				if (tile == settings.laberinto.PUNTITO) {
+					
 					puntitos.add(new Puntitos(ii, i, ancho, alto, false));
 					int acum = settings.laberinto.getContadorPuntitos();
 					settings.laberinto.setContadorPuntitos(acum + 1);
 					
 				} else if (tile == settings.laberinto.PUNTITO_GORDO) {
+					
 					puntitos.add(new Puntitos(ii, i, ancho, alto, true));
 					int acum = settings.laberinto.getContadorPuntitosGordos();
 					settings.laberinto.setContadorPuntitosGordos(acum + 1);
