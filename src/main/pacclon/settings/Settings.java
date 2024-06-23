@@ -135,7 +135,7 @@ public class Settings {
 		public final int PUNTITO_GORDO = 5;
 		public final int VACIO = 0;
 		
-		public final int TILE_X = 50;
+		public final int TILE_X = 50;// 50x50px
 		public final int TILE_Y = 50;
 		
 		public int FILAS;

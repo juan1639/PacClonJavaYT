@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import main.pacclon.settings.Settings;
+import main.pacclon.sprites.PacMan;
 import main.pacclon.sprites.Pared;
 import main.pacclon.sprites.Puntitos;
 
@@ -20,6 +21,7 @@ public class Ventana extends JPanel {
 	
 	private ArrayList<Pared> pared;
 	private ArrayList<Puntitos> puntitos;
+	private PacMan pacman;
 	
 	public Ventana() {
 		
@@ -44,6 +46,7 @@ public class Ventana extends JPanel {
 		
 		pared = instancias.instanciarParedesLaberinto();
 		puntitos = instancias.instanciarPuntitosLaberinto();
+		pacman = instancias.instanciarPacMan();
 	}
 	
 	@Override
@@ -63,6 +66,10 @@ public class Ventana extends JPanel {
 		
 		for (Puntitos tile: puntitos) {
 			tile.dibuja(g, matriz, settings);
+		}
+		
+		if (pacman != null) {
+			pacman.dibuja(g, matriz, settings);
 		}
 	}
 }

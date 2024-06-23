@@ -3,6 +3,7 @@ package main.pacclon.principal;
 import java.util.ArrayList;
 
 import main.pacclon.settings.Settings;
+import main.pacclon.sprites.PacMan;
 import main.pacclon.sprites.Pared;
 import main.pacclon.sprites.Puntitos;
 
@@ -16,6 +17,7 @@ public class Instancias {
 	private Settings settings;
 	private ArrayList<Pared> pared = new ArrayList<>();
 	private ArrayList<Puntitos> puntitos = new ArrayList<>();
+	private PacMan pacman;
 	
 	public Instancias(Settings settings) {
 		
@@ -72,5 +74,15 @@ public class Instancias {
 		}
 		
 		return puntitos;
+	}
+	
+	public PacMan instanciarPacMan() {
+		
+		int[][] args = settings.getIniSprites();
+		
+		pacman = new PacMan(args[0][0], args[0][1],
+				settings.laberinto.TILE_X, settings.laberinto.TILE_Y, args[0][3]);
+		
+		return pacman;
 	}
 }
