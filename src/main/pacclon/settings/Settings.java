@@ -48,8 +48,39 @@ public class Settings {
 		private Boolean abajo = false;
 
 		public Controles() {}
-		
+
 		// Getters & Setters
+		public Boolean isIzquierda() {
+			return izquierda;
+		}
+
+		public void setIzquierda(Boolean izquierda) {
+			this.izquierda = izquierda;
+		}
+
+		public Boolean isDerecha() {
+			return derecha;
+		}
+
+		public void setDerecha(Boolean derecha) {
+			this.derecha = derecha;
+		}
+
+		public Boolean isArriba() {
+			return arriba;
+		}
+
+		public void setArriba(Boolean arriba) {
+			this.arriba = arriba;
+		}
+
+		public Boolean isAbajo() {
+			return abajo;
+		}
+
+		public void setAbajo(Boolean abajo) {
+			this.abajo = abajo;
+		}
 	}
 
 	// ====================================================================

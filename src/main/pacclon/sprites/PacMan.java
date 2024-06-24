@@ -64,7 +64,7 @@ public class PacMan implements ISpritesMethods {
 		// Color Pacman
 		int[] rgb = {245, 215, 5};
 		
-		//this.pulsada = actualizaTeclado(sett);
+		this.pulsada = actualizaTeclado(sett);
 		actualiza(matriz, sett);
 		
 		this.contadorAnima --;
@@ -83,8 +83,63 @@ public class PacMan implements ISpritesMethods {
 	@Override
 	public void actualiza(int[][] matriz, Settings sett) {
 		
+		if (this.x % this.tileX == 0 && this.y % this.tileY == 0) {
+			
+			int x = (int) (this.x / this.tileX);
+			int y = (int) (this.y / this.tileY);
+			
+			this.velXY[0] = this.direcciones[this.pulsada][0];
+			this.velXY[1] = this.direcciones[this.pulsada][1];
+			
+		}
+		
+		if (this.avanzar) {
+			
+			this.x += this.velXY[0] * this.vel;
+			this.y += this.velXY[1] * this.vel;
+		}
 	}
 	
-	
+	private int actualizaTeclado(Settings sett) {
+		
+		if (sett.controles.isIzquierda()) {
+			return 1;
+			
+		} else if (sett.controles.isDerecha()) {
+			return 0;
+			
+		} else if (sett.controles.isArriba()) {
+			return 2;
+			
+		} else if (sett.controles.isAbajo()) {
+			return 3;
+		}
+		
+		return 0;
+	}
 
+	// Getters & Setters
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getTileX() {
+		return tileX;
+	}
+	
+	public int getTileY() {
+		return tileY;
+	}
 }
