@@ -3,6 +3,7 @@ package main.pacclon.sprites;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import main.pacclon.audio.Sonidos;
 import main.pacclon.interfaces.ISpritesMethods;
 import main.pacclon.settings.Settings;
 
@@ -34,6 +35,8 @@ public class PacMan implements ISpritesMethods {
 	private int[] velXY = {0, 0};
 	private int vel;
 	private Boolean avanzar;
+	
+	private Sonidos waka = new Sonidos();
 	
 	public PacMan(int x, int y, int tileX, int tileY, int dirPorDefecto) {
 		super();
@@ -90,6 +93,7 @@ public class PacMan implements ISpritesMethods {
 			
 			Boolean colisionPulsada = checkColisionLaberintoPulsada(x, y, matriz, sett);
 			Boolean colisionVelXY = checkColisionLaberintoVelXY(x, y, velXY, matriz, sett);
+			checkColisionPuntito(x, y, matriz, sett);
 			
 			if (!colisionPulsada) {
 				
@@ -126,6 +130,28 @@ public class PacMan implements ISpritesMethods {
 		if (x + velX < 0 || x + velX >= sett.laberinto.matriz[0].length) return false;
 		
 		if (matriz[y + velY][x + velX] == sett.laberinto.PARED) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private Boolean checkColisionPuntito(int x, int y, int[][] matriz, Settings sett) {
+		
+		// PRIMERO VERIFICAMOS QUE EL VALOR ESTE DENTRO DEL ARRAY...
+		if (x < 0 || x >= sett.laberinto.matriz[0].length) return false;
+		
+		if (matriz[y][x] == sett.laberinto.PUNTITO) {
+			
+			int acum = sett.laberinto.getContadorPuntitos();
+			sett.laberinto.setContadorPuntitos(acum - 1);
+			
+			matriz[y][x] = sett.laberinto.VACIO;
+			sett.setPuntos(sett.getPuntos() + sett.SUMAR_PTOS_COME_PUNTITO);
+			
+			waka.cargarAudio(sett.urlaudio.getWakawaka());
+			waka.playSonido();
+			
 			return true;
 		}
 		
