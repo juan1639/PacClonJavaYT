@@ -15,6 +15,7 @@ import javax.swing.Timer;
 
 import main.pacclon.interfaces.IResetControles;
 import main.pacclon.settings.Settings;
+import main.pacclon.sprites.Fantasma;
 import main.pacclon.sprites.PacMan;
 import main.pacclon.sprites.Pared;
 import main.pacclon.sprites.Puntitos;
@@ -29,6 +30,7 @@ public class Ventana extends JPanel implements ActionListener, IResetControles {
 	private ArrayList<Pared> pared;
 	private ArrayList<Puntitos> puntitos;
 	private PacMan pacman;
+	private Fantasma[] fantasma;
 	
 	private Timer timer;
 	
@@ -58,6 +60,7 @@ public class Ventana extends JPanel implements ActionListener, IResetControles {
 		pared = instancias.instanciarParedesLaberinto();
 		puntitos = instancias.instanciarPuntitosLaberinto();
 		pacman = instancias.instanciarPacMan();
+		fantasma = instancias.instanciarFantasmas(this);
 		
 		timer = new Timer((int) (1000 / 60), this);
 		timer.start();
@@ -85,6 +88,13 @@ public class Ventana extends JPanel implements ActionListener, IResetControles {
 		
 		if (pacman != null) {
 			pacman.dibuja(g, matriz, settings);
+		}
+		
+		for (int i = 0; i < settings.NUMERO_FANTASMAS; i ++) {
+			
+			if (fantasma[i] != null) {
+				fantasma[i].dibuja(g, matriz, settings);
+			}
 		}
 	}
 
