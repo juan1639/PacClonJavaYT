@@ -33,6 +33,7 @@ public class Ventana extends JPanel implements ActionListener, IResetControles {
 	private Fantasma[] fantasma;
 	
 	private Timer timer;
+	private static long milisec;
 	
 	public Ventana() {
 		
@@ -101,6 +102,8 @@ public class Ventana extends JPanel implements ActionListener, IResetControles {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		Fantasma.checkFinFantasmasAzules(settings);
+		
 		repaint();
 	}
 	
@@ -143,5 +146,13 @@ public class Ventana extends JPanel implements ActionListener, IResetControles {
 
 	public void setPacman(PacMan pacman) {
 		this.pacman = pacman;
+	}
+
+	public static long getMiliSec() {
+		return milisec;
+	}
+
+	public static void setMiliSec(long milisec) {
+		Ventana.milisec = milisec;
 	}
 }

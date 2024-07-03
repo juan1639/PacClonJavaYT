@@ -37,7 +37,7 @@ public class Sonidos {
 		}
 	}
 	
-	public void deternerSonido() {
+	public void detenerSonido() {
 		
 		if (clip != null && clip.isRunning()) {
 			clip.stop();	

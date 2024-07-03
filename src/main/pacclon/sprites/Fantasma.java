@@ -164,6 +164,9 @@ public class Fantasma implements ISpritesMethods, IChooseRndDirection {
 			
 			this.x += this.velXY[0] * this.vel;
 			this.y += this.velXY[1] * this.vel;
+			
+			// Escapatorias (izquierda/derecha)
+			this.x = escapatorias(this.x, sett.laberinto.matriz[0].length, this.tileX, this.direccion);
 		}
 	}
 	
@@ -189,6 +192,23 @@ public class Fantasma implements ISpritesMethods, IChooseRndDirection {
 		int[] coorPac = { ventana.getPacman().getX(), ventana.getPacman().getY() };
 		
 		return coorPac;
+	}
+	
+	public static void checkFinFantasmasAzules(Settings sett) {
+		
+		if (!getEstanAzules()) {
+			return;
+		}
+		
+		long checkMiliSec = System.currentTimeMillis();
+		
+		if (Ventana.getMiliSec() + sett.getDuracionFantasmasAzulesNivel()[sett.getNivel()] <= checkMiliSec) {
+			
+			Fantasma.setEstanAzules(false);
+			if (PacMan.mientrasAzules.isRunning()) {
+				PacMan.mientrasAzules.detenerSonido();
+			}
+		}
 	}
 	
 	public int generarRND(int rango) {
@@ -242,5 +262,13 @@ public class Fantasma implements ISpritesMethods, IChooseRndDirection {
 
 	public void setEstaComido(Boolean estaComido) {
 		this.estaComido = estaComido;
+	}
+
+	public static Boolean getEstanAzules() {
+		return estanAzules;
+	}
+
+	public static void setEstanAzules(Boolean estanAzules) {
+		Fantasma.estanAzules = estanAzules;
 	}
 }
